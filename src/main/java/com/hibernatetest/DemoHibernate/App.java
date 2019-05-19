@@ -16,22 +16,29 @@ public class App
     {
         System.out.println( "Hello World!" );
         
-        Allien allien= new Allien();
-       /* allien.setAid(103);
-        allien.setName("testname33");
-        allien.setColor("red"); */
+       Laptop laptop= new Laptop();
+       laptop.setLid(101);
+       laptop.setLname("HP"); 
+       
+       Student student= new Student();
+       student.setName("Dipu");
+       student.setRollno(1);
+       student.setMarks(99); 
+       student.setLaptop(laptop); 
         
-        Configuration conf= new Configuration().configure().addAnnotatedClass(Allien.class);
+        Configuration conf= new Configuration().configure().addAnnotatedClass(Student.class).addAnnotatedClass(Laptop.class); 
         
         ServiceRegistry reg= new ServiceRegistryBuilder().applySettings(conf.getProperties()).buildServiceRegistry();
         
         SessionFactory sf= conf.buildSessionFactory(reg); 
         Session session= sf.openSession();
         Transaction tx= session.beginTransaction();
-        allien= (Allien)session.get(Allien.class, 101);
+       
+        session.save(laptop);
+        session.save(student);
         
       //  session.save(allien);
-        tx.commit();
-        System.out.println(allien); 
+        session.getTransaction().commit();
+        System.out.println();  
     }
 }
