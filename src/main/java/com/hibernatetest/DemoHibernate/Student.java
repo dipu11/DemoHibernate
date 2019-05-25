@@ -17,8 +17,6 @@ public class Student {
 	private String name;
 	private int marks;
 	
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="student")
-	private  List<Laptop> laptop= new ArrayList<Laptop>(); 
 	
 	public int getRollno() {
 		return rollno;
@@ -39,15 +37,10 @@ public class Student {
 		this.marks = marks;
 	}
 	
-	public List<Laptop> getLaptop() {
-		return laptop;
-	}
-	public void setLaptop(List<Laptop> laptop) {
-		this.laptop = laptop;
-	}
+
 	@Override
 	public String toString() {
-		return "Student [rollno=" + rollno + ", name=" + name + ", marks=" + marks + ", laptop=" + laptop + "]";
+		return "Student [rollno=" + rollno + ", name=" + name + ", marks=" + marks + "]";
 	}
 	
 	
